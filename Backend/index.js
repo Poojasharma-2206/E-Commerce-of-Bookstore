@@ -6,7 +6,7 @@ require("./Models/01db");
 const Books = require("./Models/02books");
 
 //mongoose is important when we are using pathch
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 //middleware
 app.use(cors());
@@ -23,22 +23,22 @@ app.post("/upload-book", async (req, res) => {
     // Step 3: Response send karna
     res.status(201).json(savedBook);
   } catch (err) {
-    console.error("Error saving book:", err.message); 3333
+    console.error("Error saving book:", err.message);
     res.status(400).json({ message: err.message });
   }
 });
 
 //get all the books from the database
-app.get("/all-books", async (req, res) => {
-  try {
-    const books = await Books.find();
-    res.status(200).json(books);
-  } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Failed to fetch books", error: err.message });
-  }
-});
+// app.get("/all-books", async (req, res) => {
+//   try {
+//     const books = await Books.find();
+//     res.status(200).json(books);
+//   } catch (err) {
+//     res
+//       .status(500)
+//       .json({ message: "Failed to fetch books", error: err.message });
+//   }
+// });
 
 //updates a book data : patch or update
 app.patch("/books/:id", async (req, res) => {
@@ -65,6 +65,53 @@ app.patch("/books/:id", async (req, res) => {
     res
       .status(500)
       .json({ message: "Failed to update book", error: err.message });
+  }
+});
+
+//delete a book data
+app.delete("/books/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // Validate ID format
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
+
+    // Delete the book
+    const deleteBook = await Books.findByIdAndDelete(id);
+
+    // Check if the book exists
+    if (!deleteBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    res.status(200).json({ message: "Book deleted successfully", deleteBook });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to delete book",
+      error: error.message,
+    });
+  }
+});
+
+//find the book by genre
+// Find books by genre
+app.get("/all-books", async (req, res) => {
+  try {
+    // Query parameters se filter genre ko le raha hai
+    let query = {};
+    if (req.query.genre) {
+      // Use RegExp for partial matching
+      query = { genre: new RegExp(req.query.genre, "i") }; // "i" for case-insensitive search
+    }
+    // MongoDB se books find kar raha hai
+    const results = await Books.find(query);
+    res.status(200).json(results);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error fetching books", error: err.message });
   }
 });
 
