@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
 
-import { FaCartShopping } from "react-icons/fa6"
+import { FaCartShopping } from "react-icons/fa6";
 
 const BookCard = ({ headline, books }) => {
   console.log(books);
@@ -24,7 +24,7 @@ const BookCard = ({ headline, books }) => {
       </h2>
 
       {/*Cards */}
-      <div>
+      <div className="mt-12">
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
@@ -54,7 +54,7 @@ const BookCard = ({ headline, books }) => {
                 <div className="relative">
                   <img src={book.imageurl} />
                   <div className="absolute top-3 right-3 bg-blue-600 hover:bg-black p-2 rounded">
-                    <FaCartShopping className="w-4 h-4 text-white"/>
+                    <FaCartShopping className="w-4 h-4 text-white" />
                   </div>
                 </div>
                 <div>

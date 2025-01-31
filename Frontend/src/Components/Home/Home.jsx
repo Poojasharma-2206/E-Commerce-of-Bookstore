@@ -1,12 +1,20 @@
 import React from "react";
 import Banner from "../Banner/Banner";
-import FavroiteBooks from "./FavroiteBooks/FavroiteBooks";
+import BestSellerBook from "./BestSellerBook/BestSellerBook";
+import FavroiteBook from "./FavroiteBook/FavroiteBook";
+import PromoBanner from "./PromoBanner/PromoBanner";
+import OtherBooks from "./OtherBooks/OtherBooks";
+import Review from "./ReviewSection/Review";
 
 const Home = () => {
   return (
     <div>
       <Banner/>
-      <FavroiteBooks/>
+      <BestSellerBook/>
+      <FavroiteBook/>
+      <PromoBanner/>
+      <OtherBooks/>
+      <Review/>
     </div>
     // <div className="">
     //   <div className="h-screen">Home</div>

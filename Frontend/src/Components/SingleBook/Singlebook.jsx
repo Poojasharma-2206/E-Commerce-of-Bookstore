@@ -31,10 +31,20 @@ const Singlebook = () => {
   }
 
   return (
-    <div>
+    <div className="mt-28 px-4 lg:px-24">
+      {/* <p>Author: {book.author}</p> */}
+      {/* <p>{book.bookDecsription}</p> */}
+
+      {/* Image Display */}
+      {book.imageurl && (
+        <img
+          src={book.imageurl}
+          alt={book.title}
+          // style={{ width: "300px", borderRadius: "10px" }}
+          className="h-96"
+        />
+      )}
       <h1>{book.title}</h1>
-      <p>Author: {book.author}</p>
-      <p>{book.description}</p>
     </div>
   );
 };
