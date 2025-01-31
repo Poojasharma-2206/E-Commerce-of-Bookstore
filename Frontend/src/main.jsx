@@ -25,15 +25,7 @@ const router = createBrowserRouter(
       <Route path="/shop" element={<Shop />} />
       <Route path="/about" element={<About />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="/single-book/:id" element={<Singlebook />} />
-      <Route
-        path="/single-book/:id"
-        element={<Singlebook />}
-        loader={({ params }) => 
-          fetch(`http://localhost:4040/single-book/${params.id}`)
-            .then((res) => res.json())
-        }
-      />
+      <Route path="/single-book/:id" element={<Singlebook/>} />
     </Route>
   )
 );
