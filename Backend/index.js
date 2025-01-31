@@ -28,17 +28,39 @@ app.post("/upload-book", async (req, res) => {
   }
 });
 
-//get all the books from the database
-// app.get("/all-books", async (req, res) => {
-//   try {
-//     const books = await Books.find();
-//     res.status(200).json(books);
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .json({ message: "Failed to fetch books", error: err.message });
-//   }
-// });
+// get all the books from the database
+app.get("/all-book", async (req, res) => {
+  try {
+    const books = await Books.find();
+    res.status(200).json(books);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Failed to fetch books", error: err.message });
+  }
+});
+
+// get single the books from the database
+app.get("/single-book/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // Validate ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid Book ID" });
+    }
+
+    const result = await Books.findById(id);
+
+    if (!result) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+});
 
 //updates a book data : patch or update
 app.patch("/books/:id", async (req, res) => {

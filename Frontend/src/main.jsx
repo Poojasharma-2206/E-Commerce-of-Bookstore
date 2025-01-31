@@ -13,6 +13,9 @@ import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import Blog from "./Components/Blog/Blog";
 import Singlebook from "./Components/SingleBook/Singlebook";
+import UploadBook from "./Components/uploadBook/UploadBook";
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +25,15 @@ const router = createBrowserRouter(
       <Route path="/shop" element={<Shop />} />
       <Route path="/about" element={<About />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="" element={<Singlebook />} />
+      <Route path="/single-book/:id" element={<Singlebook />} />
+      <Route
+        path="/single-book/:id"
+        element={<Singlebook />}
+        loader={({ params }) => 
+          fetch(`http://localhost:4040/single-book/${params.id}`)
+            .then((res) => res.json())
+        }
+      />
     </Route>
   )
 );
