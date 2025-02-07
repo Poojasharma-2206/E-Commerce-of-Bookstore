@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import Navbar from './Components/NaveBar/Navbar'
+import MyFooter from './Components/NaveBar/Footer/MyFooter'
 
 
 function App() {
@@ -11,8 +12,10 @@ function App() {
   return (
     <>
     <Navbar/>
+    <div className='min-h-screen'>
     <Outlet/>
-   
+    </div>
+   <MyFooter/>
     </>
   )
 }
