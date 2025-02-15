@@ -17,7 +17,7 @@ import userImg from '../../src/assets/profile.jpg'
 
 const SideBar = () => {
   return (
-    <Sidebar aria-label="Sidebar with content separator example" className="w-60">
+    <Sidebar aria-label="Sidebar with content separator example" className="w-60 h-100 ">
       <Sidebar.Logo href="#" img={userImg} imgAlt="Flowbite logo" className="w-10 px-2">
         <p className="px-4">Flowbite</p>
       </Sidebar.Logo>
