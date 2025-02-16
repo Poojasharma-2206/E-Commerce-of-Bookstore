@@ -19,6 +19,10 @@ import Dashboard from "./DashBoard/Dashboard";
 import UploadBook from "./DashBoard/UploadBook";
 import ManageBook from "./DashBoard/ManageBook";
 import EditBook from "./DashBoard/EditBook";
+import AuthProvider from "./Contacts/AuthProvider";
+import Signup from "./Components/Signup_Login/Signup";
+import Login from "./Components/Signup_Login/Login";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,17 +38,22 @@ const router = createBrowserRouter(
 
       {/* Dashboard Routes (Without Navbar) */}
       <Route path="/admin/dashboard" element={<DashboardLayout />}>
-        <Route index element={<Dashboard />} />
+        <Route index element= {<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="upload" element={<UploadBook />} />
         <Route path="manage" element={<ManageBook />} />
         <Route path="editBook/:id" element={<EditBook />} />
       </Route>
+      <Route path="signup" element={<Signup/>}></Route>
+      <Route path="login" element={<Login/>}></Route>
+
     </>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
