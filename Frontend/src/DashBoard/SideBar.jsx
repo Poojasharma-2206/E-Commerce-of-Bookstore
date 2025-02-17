@@ -14,12 +14,17 @@ import {
 
 
 import userImg from '../../src/assets/profile.jpg'
+import { useContext } from "react";
+import { AuthContext } from "../Contacts/AuthProvider";
 
 const SideBar = () => {
+  const {user} = useContext(AuthContext);
+  console.log(user);
+  
   return (
     <Sidebar aria-label="Sidebar with content separator example" className="w-60 h-100 ">
-      <Sidebar.Logo href="#" img={userImg} imgAlt="Flowbite logo" className="w-10 px-2">
-        <p className="px-4">Flowbite</p>
+      <Sidebar.Logo href="/" img={user?.photoURL} imgAlt="Flowbite logo" className="w-[60px] px-2">
+        <p className="px-4">{user?.displayName || "Demo User"}</p>
       </Sidebar.Logo>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
@@ -35,9 +40,9 @@ const SideBar = () => {
           <Sidebar.Item href="/admin/dashboard/manage" icon={HiInbox}>
             Manage Books
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiUser}>
+          {/* <Sidebar.Item href="#" icon={HiUser}>
             Users
-          </Sidebar.Item>
+          </Sidebar.Item> */}
           <Sidebar.Item href="#" icon={HiShoppingBag}>
             Products
           </Sidebar.Item>

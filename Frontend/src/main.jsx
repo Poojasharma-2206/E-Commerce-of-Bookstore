@@ -23,6 +23,7 @@ import AuthProvider from "./Contacts/AuthProvider";
 import Signup from "./Components/Signup_Login/Signup";
 import Login from "./Components/Signup_Login/Login";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Logout from "./Components/Signup_Login/Logout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="signup" element={<Signup/>}></Route>
       <Route path="login" element={<Login/>}></Route>
+      <Route path="logout" element={<Logout/>}></Route>
+
 
     </>
   )

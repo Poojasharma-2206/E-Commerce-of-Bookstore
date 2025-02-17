@@ -4,7 +4,7 @@ import { AuthContext } from "../../Contacts/AuthProvider";
 import googleLog from "../../assets/google-logo.svg";
 
 const Login = () => {
-  const { user, login, loginWithGoogle } = useContext(AuthContext); // ✅ Fetch user from AuthContext
+  const { user, login, loginWithGoogle } = useContext(AuthContext); // Fetch user from AuthContext
   const [error, setError] = useState("");
 
   const location = useLocation();
@@ -32,6 +32,7 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError(errorMessage)
       });
     
 
@@ -94,6 +95,7 @@ const Login = () => {
                 placeholder="Password"
                 required
               />
+              {error ? <p className="text-red-600 text-base">Email or Password is not correct ):</p> : ""}
               <p>
                 Don't have an account?{" "}
                 <Link to="/signup" className="text-blue-700 underline">
